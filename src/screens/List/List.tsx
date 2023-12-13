@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import Components from '../../components';
 import {useNavigation} from '@react-navigation/native';
+import {useSelector} from 'react-redux';
 import {Rating, AirbnbRating} from 'react-native-ratings';
 
 import Share from 'react-native-share';
@@ -15,6 +16,7 @@ import Share from 'react-native-share';
 const Screen = () => {
   const navigation = useNavigation();
   const [search, setSearch] = useState('');
+  const points_reducer = useSelector((state: any) => state.points_reducer);
   const styles = StyleSheet.create<any>({
     layout: {
       container: {
@@ -109,7 +111,7 @@ const Screen = () => {
           flexGrow: 1,
           paddingTop: 10,
         }}
-        data={filterNameAndTags([])}
+        data={filterNameAndTags(points_reducer?.points)}
         ItemSeparatorComponent={() => (
           <Components.Libs.Section.Base
             style={{

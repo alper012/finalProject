@@ -5,6 +5,8 @@ import {useNavigation} from '@react-navigation/native';
 import {showMessage, hideMessage} from 'react-native-flash-message';
 import {useNavigationState} from '@react-navigation/native';
 
+import Redux from '../../redux';
+
 const initial: any = {
   id: '',
   name: '',
@@ -70,9 +72,12 @@ const Screen = () => {
     }
 
     if (state?.id === '') {
-      // create
+      await Redux.Actions.Points.create({
+        ...state,
+        id: Math.random().toString(),
+      });
     } else {
-      // update
+      await Redux.Actions.Points.update(state);
     }
 
     console.log('state', state);
@@ -134,7 +139,7 @@ const Screen = () => {
         <Components.Libs.TextInput.Primary
           value={state?.phone}
           onChangeText={(phone: any) => setState({...state, phone})}
-          label="Phone of the restaurant "
+          label="Phone of the restaurant"
         />
 
         <Components.Libs.LocationGetter.Base

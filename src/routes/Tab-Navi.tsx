@@ -48,6 +48,31 @@ const BtTabs = () => {
           },
         }}
       />
+
+      <Bottom.Screen
+        name="About_Screen"
+        component={Screens.About.About}
+        options={{
+          tabBarLabel: '',
+          tabBarIcon: ({focused}) => {
+            return (
+              <Components.Libs.Image.Base
+                source={require('../assets/images/about_icon.png')}
+                style={{
+                  container: {
+                    bottom: -7,
+                  },
+                  image: {
+                    width: 40,
+                    height: 40,
+                    tintColor: focused ? 'red' : 'pink',
+                  },
+                }}
+              />
+            );
+          },
+        }}
+      />
     </Bottom.Navigator>
   );
 };
